@@ -16,7 +16,6 @@ public class HomeController : Controller
     public IActionResult Index()
     {
 
-        var mafer = "mafer";
         return View();
     }
 
