@@ -16,8 +16,8 @@ namespace Veterinarias.Controllers
         }
         public IActionResult Index()
         {
-            var listado2 = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01");
-            return View(listado2);
+            var mascotas = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01");
+            return View(mascotas);
         }
     }
 }

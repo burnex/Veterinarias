@@ -20,15 +20,33 @@ namespace Veterinarias.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        //index TRABAJADORES
+        //INDEX VETERINARIOS 
         [HttpGet]
         public IActionResult Index()
         {
-
-            var listado2 = _context.PR_VETERINARIOS_S01.FromSqlRaw("exec PR_VETERINARIOS_S01");
-            return View(listado2);
+            var veterinarios = _context.PR_VETERINARIOS_S01.FromSqlRaw("exec PR_VETERINARIOS_S01");
+            return View(veterinarios);
         }
 
+        //PARA ACTIVAR Y DESACTIVAR VETERINARIOS
+        public async Task<IActionResult> Activar(int id)
+        {
+            var veterinarios = await _context.Veterinarios.FindAsync(id);
+            veterinarios.Estado = true; // Establecer el estado como activado
+            _context.Update(veterinarios);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Anular ANIMALES method GET
+        public async Task<IActionResult> Anular(int id)
+        {
+            var veterinarios = await _context.Veterinarios.FindAsync(id);
+            veterinarios.Estado = false; // Establecer el estado como anulado
+            _context.Update(veterinarios);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

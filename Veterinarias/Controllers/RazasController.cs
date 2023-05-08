@@ -29,79 +29,37 @@ namespace Veterinarias.Controllers
             return View(razas);
         }
 
-
-
-        ////Create RAZAS
+        //CREATE RAZAS
         public IActionResult Create(int idAnimal)
         {
-            ViewBag.IdAnimal = idAnimal;
-            return PartialView();
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> Create(int idAnimal, Razas nuevaRaza)
-        {
-            // Obtener el animal existente al que se agregará la nueva raza
-            var animal = await _context.Animales.FindAsync(idAnimal);
-
-            if (animal == null)
-            {
-                return NotFound();
-            }
-
-            // Establecer la relación entre la nueva raza y el animal correspondiente
-            nuevaRaza.IdAnimal = animal.Id;
-
-            // Agregar la nueva raza a la base de datos y guardar los cambios
-            _context.Razas.Add(nuevaRaza);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index), new { id = animal.Id });
-        }
-
-
-
-
-        ////EDIT RAZAS
-        public async Task<IActionResult> EditAsync(int id)
-        {
-            var razas = await _context.Razas.FindAsync(id); //select * from ANIMALES where PK = id
-            return PartialView(razas);
+            var raza = new Razas { IdAnimal = idAnimal };
+            return PartialView(raza);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Razas raza)
+        public async Task<IActionResult> Create(Razas Model)
         {
-            if (id != raza.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(raza);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_context.Razas.Any(r => r.Id == raza.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(raza);
+            await _context.AddAsync(Model);   //Insert into
+            await _context.SaveChangesAsync();     //Commit a la bd
+            return RedirectToAction("Index", new { id = Model.IdAnimal });
         }
 
+        //EDITAR RAZAS
+        public async Task<IActionResult> Edit(int id)
+        {
+            var raza = await _context.Razas.FindAsync(id);
+            return PartialView(raza);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(Razas model)
+        {
+            var modelOld = await _context.Razas.FindAsync(model.Id);
+            modelOld.Nombre = model.Nombre;
+            _context.Update(modelOld); // Actualizar el registro existente
+            await _context.SaveChangesAsync(); // Guardar cambios en la base de datos
+            return RedirectToAction("Index", new { id = modelOld.IdAnimal });
+        }
 
         //PARA ACTIVAR Y DESACTIVAR RAZAS
         public async Task<IActionResult> Activar(int id)

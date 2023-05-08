@@ -25,12 +25,12 @@ namespace Veterinarias.Modelos
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaNacimiento { get; set; }
 
+        [NotMapped]
         [DisplayName("Edad")]
         public int Edad { get; set; }
 
         [DisplayName("Estado")]
         public bool Estado { get; set; }
-
 
         [DisplayName("Foto")]
         public string? Foto { get; set; }

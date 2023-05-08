@@ -77,7 +77,7 @@
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:#3fb618;color:white;">
+            <div class="modal-header" style="background-color:#da2213;color:white;">
                 <button data-dismiss="modal" class="close" type="button">
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Close</span>
@@ -189,7 +189,7 @@
         //PARA QUE NO SEA UNA PESTAÑA LE PONEMOS 'VIEW' EN CONTROLLER Y ESTE SCRIPT SE VA PARA EL MISMO EDIT
         $("body").on("click", "a.edit-dialog-window", null, function (e) {
             e.preventDefault();
-            debugger;
+            //debugger;
             var $link = $(this);
             var url = $(this).attr('href');
             if (url.indexOf('#') == 0) {

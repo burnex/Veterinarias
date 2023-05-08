@@ -119,6 +119,48 @@
     </div>
 </div>
 
+<div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3fb618;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Activar</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de activar el animal seleccionado?</h4>
+                </div>
+                <div id="responseActivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#da2213;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Anular</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de anular el animal seleccionado?</h4>
+                </div>
+                <div id="responseInactivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="AddModal" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width:50%;">
         <div class="modal-content">
@@ -151,28 +193,22 @@
     </div>
 </div>
 
-<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#da2213;color:white;">
-                <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title">Eliminar Trabajadores</h2>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <h4>¿Estas seguro de eliminar el registro seleccionado?</h4>
-                </div>
-                <div id="response" class="text-right">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @section Scripts {
+
+    <script>
+        $("body").on("click", "a.delete-dialog-window", null, function (e) {
+            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Anular", "Personas")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
+            $("#responseInactivar").html(htmlContent);
+            $('#Anular').modal('show');
+        });
+
+        $("body").on("click", "a.activar-dialog-window", null, function (e) {
+            var htmlContent = '<br /><button type="button" id="btnNoActivar" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Activar", "Personas")/' + $(this).data('id') + '" class="btn btn-success">Sí</a>';
+            $("#responseActivar").html(htmlContent);
+            $('#Activar').modal('show');
+        });
+    </script>
 
     <script>
         //PARA ABRIR UNA VENTANA CREATE
@@ -209,38 +245,6 @@
                 });
             }
         });
-    </script>
-
-    <script>
-        //PARA ABRIR UNA VENTANA DELETE
-        $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Trabajadores")/' + $(this).data('id') + '" class="btn btn-default">Si</a>';
-            $("#response").html(htmlContent);
-            $('#Anular').modal('show');
-        });
-        //Cuadro para poder eliminar registro, con boton no y si
-    </script>
-
-    <script>
-        //PARA HACER EL COMBO ANIDADO
-        function onchangeDepartamento() {
-            let idDepartamento = $("#comboDepartamento").val();
-            CargarProvincia(idDepartamento);
-        }
-        function CargarProvincia(idDepartamento) {
-            fetchGet("/Trabajadores/CargarProvincias/?id=" + idDepartamento, function (data) {
-                llenarCombo(data, "comboProvincia", "nombreProvincia", "id", "0");
-            });
-        }
-        function onchangeProvincia() {
-            let idProvincia = $("#comboProvincia").val();
-            CargarDistritos(idProvincia);
-        }
-        function CargarDistritos(idProvincia) {
-            fetchGet("/Trabajadores/CargarDistritos/?id=" + idProvincia, function (data) {
-                llenarCombo(data, "comboDistrito", "nombreDistrito", "id", "0");
-            });
-        }
     </script>
 
     <script>

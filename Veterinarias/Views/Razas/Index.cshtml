@@ -1,21 +1,30 @@
 ﻿@model IEnumerable<Veterinarias.Modelos.PR_RAZAS_S01>
 @{
-    var parametroAnimales = (Veterinarias.Modelos.Animales)ViewBag.Animales;
+    var parametroAnimal = (Veterinarias.Modelos.Animales)ViewBag.Animales;
 }
 
-<div class="mail-box">
+<div class="mail-box">@*
+    <h3>Animal: @parametroAnimal.Nombre</h3>*@
     <h2>Razas</h2>
     <p>
-        <a asp-action="Create" asp-route-idAnimales="@parametroAnimales.Id" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
+        <a asp-action="Create" asp-route-idAnimal="@parametroAnimal.Id" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
     </p>
     <div class="table-responsive table-sm table-hover">
         <table id="example" class="table table-hover table-mail">
             <thead class="table-active">
         <tr>
-            <th>Animal</th>
-            <th>Raza</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+            <th>
+                Animal
+            </th>
+            <th>
+                Raza
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Acciones
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -45,6 +54,7 @@
             }
         </tbody>
     </table>
+    <a asp-controller="Animales" class="btn btn-dark" asp-action="Index">Regresar a la lista</a>
     </div>
 </div>
 
@@ -52,7 +62,7 @@
     <div class="modal-dialog modal-lg" style="width:50%;">
         <div class="modal-content">
             <div class="modal-header" style="background-color:green;color:white;">
-                <h5 class="modal-title" id="TittleCreatemodel">Nuevo Animal</h5>
+                <h5 class="modal-title" id="TittleCreatemodel">Nueva Raza</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

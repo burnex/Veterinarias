@@ -16,7 +16,7 @@ namespace Veterinarias.Controllers
 
         //TOMARLO COMO PRUEBA PARA CREACIONES SENCILLAS
 
-        //INDEX ANIMALES GET : /<Controller>/
+        //INDEX ANIMALES 
         public IActionResult Index()
         {
             var animales = _context.Animales.ToList();
