@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Veterinarias.Modelos
 {
-    public class Personas
+    public class PR_PERSONAS_S01
     {
         public int Id { get; set; }
 
@@ -18,12 +19,14 @@ namespace Veterinarias.Modelos
 
         [DisplayName("Sexo")]
         public string Sexo { get; set; } = string.Empty;
+        public string SexoDescripcion { get; set; } = string.Empty;
 
         //[DisplayName("Fecha Nacimiento")]
         //public DateTime FechaNacimiento { get; set; } = DateTime.Now.Date;
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaNacimiento { get; set; }
+
 
         [DisplayName("Edad")]
         public int Edad { get; set; }

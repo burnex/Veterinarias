@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+
 namespace Veterinarias.Modelos
 {
-    public class Personas
+    public class PR_VETERINARIOS_S01
     {
         public int Id { get; set; }
 
@@ -16,9 +17,6 @@ namespace Veterinarias.Modelos
         [DisplayName("Nombres")]
         public string Nombres { get; set; } = string.Empty;
 
-        [DisplayName("Sexo")]
-        public string Sexo { get; set; } = string.Empty;
-
         //[DisplayName("Fecha Nacimiento")]
         //public DateTime FechaNacimiento { get; set; } = DateTime.Now.Date;
 
@@ -28,9 +26,15 @@ namespace Veterinarias.Modelos
         [DisplayName("Edad")]
         public int Edad { get; set; }
 
+        [DisplayName("Sexo")]
+        public string Sexo { get; set; } = string.Empty;
+        public string SexoDescripcion { get; set; } = string.Empty;
+
+        [DisplayName("Colegio")]
+        public string Colegio { get; set; } = string.Empty;
+
         [DisplayName("Estado")]
         public bool Estado { get; set; }
-
 
         [DisplayName("Foto")]
         public string? Foto { get; set; }
@@ -52,7 +56,5 @@ namespace Veterinarias.Modelos
                 }
             }
         }
-
-
     }
 }

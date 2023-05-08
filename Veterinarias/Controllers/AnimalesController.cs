@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Veterinarias.Data;
 using Veterinarias.Modelos;
-using Veterinarias.Data;
 
 namespace Veterinarias.Controllers
 {

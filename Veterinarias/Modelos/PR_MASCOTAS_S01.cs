@@ -1,23 +1,21 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Veterinarias.Modelos
 {
-    public class Personas
+    public class PR_MASCOTAS_S01
     {
         public int Id { get; set; }
 
-        [DisplayName("Tipo Documento")]
-        public string TipoDocumento { get; set; } = string.Empty;
+        [DisplayName("Animal")]
+        public string Animal { get; set; } = string.Empty;
 
-        [DisplayName("Numero Documento")]
-        public string NumeroDocumento { get; set; } = string.Empty;
+        [DisplayName("Raza")]
+        public string Raza { get; set; } = string.Empty;
 
-        [DisplayName("Nombres")]
+        [DisplayName("Nombre")]
         public string Nombres { get; set; } = string.Empty;
-
-        [DisplayName("Sexo")]
-        public string Sexo { get; set; } = string.Empty;
 
         //[DisplayName("Fecha Nacimiento")]
         //public DateTime FechaNacimiento { get; set; } = DateTime.Now.Date;
@@ -28,11 +26,15 @@ namespace Veterinarias.Modelos
         [DisplayName("Edad")]
         public int Edad { get; set; }
 
+        [DisplayName("Color")]
+        public string Color { get; set; } = string.Empty;
+
+        [DisplayName("Dueño")]
+        public string Dueño { get; set; } = string.Empty;
+
         [DisplayName("Estado")]
-        public bool Estado { get; set; }
+        public string Estado { get; set; } = string.Empty;
 
-
-        [DisplayName("Foto")]
         public string? Foto { get; set; }
         [NotMapped]
         public IFormFile FotoIFormFile { get; set; }
@@ -52,7 +54,5 @@ namespace Veterinarias.Modelos
                 }
             }
         }
-
-
     }
 }
