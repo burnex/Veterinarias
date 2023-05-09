@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Veterinarias.Modelos.PR_PERSONAS_MG01>
+﻿@model IEnumerable<Veterinarias.Modelos.PR_MASCOTAS_MG01>
 
 <div class="mail-box">
 
-    <h2>Personas</h2>
+    <h2>Mascotas</h2>
 
     <p>
         <a asp-action="Create" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
@@ -13,16 +13,13 @@
             <thead class="table-active">
                 <tr>
                     <th>
-                        Tipo Documento
+                        Animal
                     </th>
                     <th>
-                        Num. Documento
+                        Raza
                     </th>
                     <th>
-                        Nombres
-                    </th>
-                    <th>
-                        Foto
+                        Nombre
                     </th>
                     <th>
                         Fec. Nacimiento
@@ -31,7 +28,13 @@
                         Edad
                     </th>
                     <th>
-                        Sexo
+                        Color
+                    </th>
+                    <th>
+                        Foto
+                    </th>
+                    <th>
+                        Dueño
                     </th>
                     <th>
                         Estado
@@ -44,19 +47,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TipoDocumento)
+                            @Html.DisplayFor(modelItem => item.NombreAnimal)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NumeroDocumento)
+                            @Html.DisplayFor(modelItem => item.NombreRaza)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombres)
-                        </td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.Foto))
-                            {
-                                <img src="@item.SrcFoto" width="100px" />
-                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaNacimiento)
@@ -65,14 +62,23 @@
                             @Html.DisplayFor(modelItem => item.Edad)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SexoDescripcion)
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Foto))
+                            {
+                                <img src="@item.SrcFoto" width="100px" />
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreDueño)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Estado)
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
-                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                           @*<a asp-action="Update" asp-route-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>*@
                         </td>
                     </tr>
                 }
@@ -104,7 +110,7 @@
     <div class="modal-dialog modal-lg" style="width:50%;">
         <div class="modal-content">
             <div class="modal-header" style="background-color:green;color:white;">
-                <h5 class="modal-title" id="TittleCreatemodel">Nueva Persona</h5>
+                <h5 class="modal-title" id="TittleCreatemodel">Nueva Mascota</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -133,13 +139,13 @@
 
 @section Scripts {
 
-    <script>
+   @* <script>
         $("body").on("click", "a.delete-dialog-window", null, function (e) {
             var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Departamentos")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
             $("#response").html(htmlContent);
             $('#Anular').modal('show');
         });
-    </script>
+    </script>*@
     <script>
         $("body").on("click", "a.add-dialog-window", null, function (e) {
             e.preventDefault();
@@ -194,5 +200,69 @@
                     'pdfHtml5'
                 ]
             });
-        });</script>
+        });
+    </script>
+    <script>
+        function onchangeAnimal() {
+            let idAnimal = $("#comboAnimal").val();
+            CargarRaza(idAnimal);
+        }
+        function CargarRaza(idAnimal) {
+            fetchGet("/Mascotas/CargarRaza/?id=" + idAnimal, function (data) {
+                llenarCombo(data, "comboRaza", "nombreRaza", "id", "0");
+            });
+        }
+    </script>
+    <script>
+        function onclickBuscarDueño() {
+            debugger;
+            var parametro = $('#parametroBusqueda').val();
+
+            var url = '@Url.Action("BuscarDueño", "Mascotas")';
+            url += '?busqueda=' + parametro;
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function (data) {
+                    $('#ModalDueño .teeee').html(data);
+                    $('#ModalDueño').modal('show');
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve cities.' + ex);
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).on('click', '#tablaBuscarDueño tbody tr', function () {
+            debugger;
+            //Selecciona fila.
+            let TotalColumnas = $("#tablaBuscarDueño").find("tr");
+            $(TotalColumnas).each(function () {
+                $(this).removeClass('active');
+            });
+            $(this).addClass('active');
+            //Obtiene valores de selección
+            _id = $(this).find("td").eq(0).text().trim();
+            _Nombre = $(this).find("td").eq(1).text().trim();
+        });
+    </script>
+    <script>
+        function GuardarDueñoSeleccionado() {
+            debugger
+            $('#ModalDueño').modal('hide');
+            if (_id != null && _Tipo != null) {
+                /*Guardar ID en IdDueño*/
+                document.getElementById('IdDueño').value = _id;
+                /*Guardar Nombre en NombreTraba*/
+                document.getElementById('NombreDueño').value = _Nombre;
+                /*
+                (Otra forma de guardar el nombre con un id="NombreDueño")
+                $('.nombreDueño').val(_Nombre);
+                */           
+            }
+        }
+    </script>
 }

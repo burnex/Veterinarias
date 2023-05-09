@@ -18,6 +18,9 @@ namespace Veterinarias.Data
         public DbSet<Veterinarios> Veterinarios { get; set; }
         public DbSet<TiposDocumentos> TiposDocumentos { get; set; }
         public DbSet<Sexo> Sexo { get; set; }
+        public DbSet<PR_PERSONAS_MG01> PR_PERSONAS_MG01 { get; set; }
+        public DbSet<PR_VETERINARIOS_MG01> PR_VETERINARIOS_MG01 { get; set; }
+        public DbSet<PR_MASCOTAS_MG01> PR_MASCOTAS_MG01 { get; set; }
 
     }
 }

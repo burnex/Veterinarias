@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TrabajadoresPrueba.Models;
 using Veterinarias.Data;
 using Veterinarias.Modelos;
@@ -20,7 +21,9 @@ namespace Veterinarias.Controllers
         }
         public IActionResult Index()
         {
-            var listarPersonas = _context.Personas.ToList();
+            //var listarPersonas = _context.Personas.ToList();
+            var listarPersonas = _context.PR_PERSONAS_MG01.FromSqlRaw("exec PR_PERSONAS_MG01");
+
             return View(listarPersonas);
         }
         public IActionResult Create()
@@ -33,10 +36,10 @@ namespace Veterinarias.Controllers
             ViewData["TipoDocumento"] = new SelectList(TiposDocumentos, "TipoDocumento", "NombreDocumento");
 
             var Sexo = new List<Sexo>();
-            Sexo.Add(new Models.Sexo { SexoItem = "F", SexoDescripcion = "Femenino" });
-            Sexo.Add(new Models.Sexo { SexoItem = "M", SexoDescripcion = "Masculino" });
+            Sexo.Add(new Models.Sexo {SexoItem = "F", SexoDesc = "Femenino" });
+            Sexo.Add(new Models.Sexo {SexoItem = "M", SexoDesc = "Masculino" });
 
-            ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDescripcion");
+            ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDesc");
 
             var persona = new Personas { FechaNacimiento = DateTime.Now.Date };
             return PartialView(persona);
@@ -80,10 +83,10 @@ namespace Veterinarias.Controllers
             ViewData["TipoDocumento"] = new SelectList(TiposDocumentos, "TipoDocumento", "NombreDocumento", personas.TipoDocumento);
 
             var Sexo = new List<Sexo>();
-            Sexo.Add(new Models.Sexo { SexoItem = "F", SexoDescripcion = "Femenino" });
-            Sexo.Add(new Models.Sexo { SexoItem = "M", SexoDescripcion = "Masculino" });
+            Sexo.Add(new Models.Sexo {SexoItem = "F", SexoDesc = "Femenino" });
+            Sexo.Add(new Models.Sexo {SexoItem = "M", SexoDesc = "Masculino" });
 
-            ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDescripcion", personas.Sexo);
+            ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDesc", personas.Sexo);
 
             return PartialView(personas);
         }

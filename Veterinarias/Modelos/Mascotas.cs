@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Veterinarias.Modelos
 {
@@ -7,6 +8,10 @@ namespace Veterinarias.Modelos
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
+        [DisplayName("Animal")]
+        public int IdAnimal { get; set; }  
+        [DisplayName("Raza")]
         public int IdRaza { get; set; }
         [Required]
         [DisplayName("Nombres y Apellidos")]
@@ -17,6 +22,9 @@ namespace Veterinarias.Modelos
         public string Color { get; set; } = string.Empty;
         public int IdPersona { get; set; }
         public string? Foto { get; set; } = string.Empty;
+        [NotMapped]
+        [DisplayName("Foto")]
+        public IFormFile FotoIFormFile { get; set; }
         public string Estado { get; set; } = string.Empty;
         public DateTime FechaRegistro { get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Veterinarias.Modelos.Veterinarios>
+﻿@model IEnumerable<Veterinarias.Modelos.PR_VETERINARIOS_MG01>
 
 <div class="mail-box">
 
@@ -27,9 +27,9 @@
                     <th>
                         Fec. Nacimiento
                     </th>
-                    @*<th>
+                    <th>
                         Edad
-                    </th>*@
+                    </th>
                     <th>
                         Sexo
                     </th>
@@ -64,11 +64,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaNacimiento)
                         </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.Edad)
-                        </td>*@
                         <td>
-                            @Html.DisplayFor(modelItem => item.Sexo)
+                            @Html.DisplayFor(modelItem => item.Edad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SexoDescripcion)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Colegio)

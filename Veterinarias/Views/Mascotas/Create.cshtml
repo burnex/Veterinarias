@@ -1,0 +1,100 @@
+﻿@model Veterinarias.Modelos.Mascotas
+
+<div class="ibox-content">
+    <div class="row">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="IdAnimal" class="control-label"></label>
+                        <select asp-for="IdAnimal" class="form-control" asp-items="ViewBag.IdAnimal" id="comboAnimal" onchange="onchangeAnimal()"></select>
+                        <span asp-validation-for="IdAnimal" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="IdRaza" class="control-label"></label>
+                        <select asp-for="IdRaza" class="form-control" id="comboRaza"></select>
+                        <span asp-validation-for="IdRaza" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="Nombres" class="control-label"></label>
+                        <input asp-for="Nombres" class="form-control" required />
+                        <span asp-validation-for="Nombres" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="FechaNacimiento" class="control-label"></label>
+                        <input asp-for="FechaNacimiento" class="form-control" type="date" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="Color" class="control-label"></label>
+                        <input asp-for="Color" class="form-control" />
+                        <span asp-validation-for="Color" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <input class="form-control input-sm" hidden id="IdDueño" asp-for="IdPersona"   />
+                <label class="control-label">
+                    Dueño
+                    <a onclick="onclickBuscarDueño()" class="btn btn-sm btn-info text-white">Buscar</a>
+                </label>
+                <input required disabled class="form-control" id="NombreDueño" />
+                @*<input required disabled class="form-control nombreTrabajador" /> *@
+                <input type="hidden" asp-for="Nombres" id="emp_prove" name="ProveedorDescripcion" class="form-control nombreDueño" />
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="FechaRegistro" class="control-label"></label>
+                        <input asp-for="FechaRegistro" class="form-control" type="date" />
+                        <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12">
+                <div class="form-group">
+                    <div class="input text">
+                        <label asp-for="FotoIFormFile" class="control-label"></label>
+                        <input asp-for="FotoIFormFile" type="file" accept="image/png, image/jpeg"/>
+                        <span asp-validation-for="FotoIFormFile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-12 text-right">
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function onchangeAnimal() {
+            let idAnimal = $("#comboAnimal").val();
+            CargarRaza(idAnimal);
+        }
+        function CargarRaza(idAnimal) {
+            fetchGet("/Mascotas/CargarRaza/?id=" + idAnimal, function (data) {
+                llenarCombo(data, "comboRaza", "nombreRaza", "id", "0");
+            });
+        }
+    </script>
+}
