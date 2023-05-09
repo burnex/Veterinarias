@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -15,6 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Veterinarios\" />
-    <Folder Include="Views\Personas\" />
+    <Folder Include="wwwroot\images\Foto\" />
   </ItemGroup>
 </Project>

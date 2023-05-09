@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Veterinarias.Modelos.Persona>
+
+<div class="mail-box">
+    <h2>Persona</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary info-dialog-window">Nuevo Registro</a>
+    </p>
+    <div class="table-responsive table-sm table-hover">
+        <table id="example" class="table table-hover table-mail">
+            <thead class="table-active">
+                <tr>
+                    <th>
+                        Tipo Documento
+                    </th>
+                    <th>
+                        Nro. Documento
+                    </th>
+                    <th>
+                        Nombres
+                    </th>
+                    <th>
+                        Foto
+                    </th>
+                    <th>
+                        Fecha Nacimiento
+                    </th>
+                    <th>
+                        Sexo
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoDocumento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroDocumento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombres)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Foto)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Foto))
+                            {
+                                <a href="@item.FotoURL2" target="_blank">Foto</a>
+                            }
+                        </td>
+                         <td>
+                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning infoObser-dialog-window">Editar</a>
+                            <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                language: {
+                    search: "Buscar: ",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                    infoFiltered: "(filtrado de _MAX_ registros en total)",
+                    paginate: {
+                        first: "Primero",
+                        previous: "<",
+                        next: ">",
+                        last: "Último"
+                    }
+                },
+                "order": [[0, "asc"]],
+                stateSave: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'excelHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });</script>
+}
