@@ -21,6 +21,7 @@
     <Folder Include="Views\Visitas\" />
     <Folder Include="Views\Veterinarios\" />
     <Folder Include="Views\Personas\" />
+    <Folder Include="wwwroot\images\MascotasFoto\" />
     <Folder Include="wwwroot\images\VeterinariosFoto\" />
     <Folder Include="wwwroot\images\PersonasFoto\" />
   </ItemGroup>

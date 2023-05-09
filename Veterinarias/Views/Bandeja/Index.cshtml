@@ -7,9 +7,7 @@
     </p>*@
 <div class="mail-box">
     <h2>Bandeja de aprobación</h2>
-    <p>
-        <a asp-action="Create" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
-    </p>
+    
     <div class="table-responsive table-sm table-hover">
         <table id="example" class="table table-hover table-mail">
             <thead class="table-active">
@@ -89,8 +87,8 @@
                         <td>
                             @if (item.Estado == "Registrado")
                             {
-                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
-                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Rechazar</a>
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Aprobar</a>
                             }
                         </td>
 
@@ -109,11 +107,11 @@
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h2 class="modal-title">Activar</h2>
+                <h2 class="modal-title">Aprobar</h2>
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
+                    <h4>¿Estás seguro de aprobar la la solicitud?</h4>
                 </div>
                 <div id="responseActivar" class="text-right">
                 </div>
@@ -130,11 +128,11 @@
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h2 class="modal-title">Anular</h2>
+                <h2 class="modal-title">Rechazar</h2>
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
+                    <h4>¿Estás seguro de rechazar la solicitud?</h4>
                 </div>
                 <div id="responseInactivar" class="text-right">
                 </div>
