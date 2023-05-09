@@ -44,7 +44,7 @@ namespace Veterinarias.Controllers
             {
                 model.Foto = await CargarDocumento2(model.FotoIFormFile, "Foto");
             }
-
+            model.Estado = true;
             _context.Add(model);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
