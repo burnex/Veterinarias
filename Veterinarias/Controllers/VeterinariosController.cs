@@ -21,7 +21,6 @@ namespace Veterinarias.Controllers
         }
 
         //INDEX VETERINARIOS 
-        [HttpGet]
         public IActionResult Index(string TipoDocumento, string Sexo)
         {
             var TiposDocumentos = new List<TiposDocumentos>();
