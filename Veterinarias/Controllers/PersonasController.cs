@@ -47,6 +47,7 @@ namespace Veterinarias.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Personas Model)
         {
+            Model.Estado = true;
 
             if (Model.FotoIFormFile != null)
             {
