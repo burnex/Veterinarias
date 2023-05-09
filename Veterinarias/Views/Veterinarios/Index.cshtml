@@ -104,45 +104,24 @@
                         <td>
                             @* @Html.DisplayFor(modelItem => item.Estado)*@
                             <span class="estado-badge @(item.Estado ? "badge-success" : "badge-danger")">
-                                @(item.Estado ? "Activado" : "Anulado")
+                                @(item.Estado ? "Anulado" : "Activado")
                             </span>
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
                             @if (item.Estado)
                             {
-                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
                             }
                             else
                             {
-                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
                             }
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
-</div>
-
-<div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#3fb618;color:white;">
-                <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title">Activar</h2>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
-                </div>
-                <div id="responseActivar" class="text-right">
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -161,6 +140,27 @@
                     <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
                 </div>
                 <div id="responseInactivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3fb618;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Activar</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
+                </div>
+                <div id="responseActivar" class="text-right">
                 </div>
             </div>
         </div>
@@ -237,7 +237,7 @@
         //PARA ABRIR UNA VENTANA EDIT
         $("body").on("click", "a.edit-dialog-window", null, function (e) {
             e.preventDefault();
-            debugger;
+            //debugger;
             var $link = $(this);
             var url = $(this).attr('href');
             if (url.indexOf('#') == 0) {

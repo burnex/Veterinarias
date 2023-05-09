@@ -1,18 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Veterinarias.Modelos
 {
-    public class Mascotas
+    public class Bandeja
     {
         public int Id { get; set; }
 
-        [NotMapped]
         [DisplayName("Animal")]
         public string Animal { get; set; } = string.Empty;
 
-        [NotMapped]
         [DisplayName("Raza")]
         public string Raza { get; set; } = string.Empty;
 
@@ -25,14 +23,12 @@ namespace Veterinarias.Modelos
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaNacimiento { get; set; }
 
-        [NotMapped]
         [DisplayName("Edad")]
         public int Edad { get; set; }
 
         [DisplayName("Color")]
         public string Color { get; set; } = string.Empty;
 
-        [NotMapped]
         [DisplayName("Dueño")]
         public string Dueño { get; set; } = string.Empty;
 

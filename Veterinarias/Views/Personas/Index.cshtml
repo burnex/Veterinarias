@@ -98,18 +98,19 @@
                         <td>
                             @* @Html.DisplayFor(modelItem => item.Estado)*@
                             <span class="estado-badge @(item.Estado ? "badge-success" : "badge-danger")">
-                                @(item.Estado ? "Activado" : "Anulado")
+                                @(item.Estado ? "Anulado" : "Activado")
                             </span>
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
                             @if (item.Estado)
                             {
-                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
                             }
                             else
                             {
-                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
                             }
                         </td>
                     </tr>
@@ -232,7 +233,7 @@
         //PARA ABRIR UNA VENTANA EDIT
         $("body").on("click", "a.edit-dialog-window", null, function (e) {
             e.preventDefault();
-            debugger;
+            //debugger;
             var $link = $(this);
             var url = $(this).attr('href');
             if (url.indexOf('#') == 0) {

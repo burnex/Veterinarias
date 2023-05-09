@@ -1,4 +1,4 @@
-DELETE FROM Mascotas WHERE Id = 4;
+--DELETE FROM Mascotas WHERE Id = 8;
 SELECT *FROM Animales
 SELECT *FROM razas
 SELECT *FROM Personas

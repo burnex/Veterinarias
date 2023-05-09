@@ -18,7 +18,7 @@ namespace Veterinarias.Data
         //public DbSet<Visitas> Visitas { get; set; }
         //public DbSet<Baños> Baños { get; set; }
         //public DbSet<Consultas> Consultas { get; set; }
-
+        public DbSet<Bandeja> Bandeja { get; set; }
 
         public DbSet<PR_RAZAS_S01> PR_RAZAS_S01 { get; set; }
         public DbSet<PR_PERSONAS_S01> PR_PERSONAS_S01 { get; set; }

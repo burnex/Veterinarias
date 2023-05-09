@@ -6,40 +6,7 @@
         <a asp-action="Create" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
     </p>*@
 <div class="mail-box">
-    <h2>Mascotas</h2>
-    <div class="form-row mb-3">
-        <div class="col">
-            <label for="animal">Animal:</label>
-            <select id="animal" class="form-control">
-                <option value="">Todos</option>
-                <option value="DNI">DNI</option>
-                <option value="Carnet de Extranjería">Carnet de Extranjería</option>
-                <option value="Pasaporte">Pasaporte</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="raza">Raza:</label>
-            <select id="raza" class="form-control">
-                <option value="">Ambos</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="dueño">Dueño:</label>
-            <select id="dueño" class="form-control">
-                <option value="">Ambos</option>
-                <option value="bruno">Bruno</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="mafer">Mafer</option>
-                <option value="vale">Vale</option>
-            </select>
-        </div>
-        <div class="col align-self-end">
-            <button type="button" class="btn btn-primary">Aplicar Filtros</button>
-            <button type="button" class="btn btn-primary">Limpiar filtros</button>
-        </div>
-    </div>
+    <h2>Bandeja de aprobación</h2>
     <p>
         <a asp-action="Create" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
     </p>
@@ -112,6 +79,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Dueño)
                         </td>
+
                         <td>
                             <span class="estado-badge @(item.Estado == "Registrado" ? "badge-secondary" : (item.Estado == "Aprobado" ? "badge-success" : "badge-danger"))">
                                 @(item.Estado == "Registrado" ? "Registrado" : (item.Estado == "Aprobado" ? "Aprobado" : "Rechazado"))
@@ -121,11 +89,11 @@
                         <td>
                             @if (item.Estado == "Registrado")
                             {
-                                <a data-id="@item.Id" class="btn btn-success aprobar-dialog-window">Aprobar</a>
-                                <a data-id="@item.Id" class="btn btn-danger rechazar-dialog-window">Rechazar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
                             }
-
                         </td>
+
                     </tr>
                 }
             </tbody>
@@ -133,7 +101,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="Aprobar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#3fb618;color:white;">
@@ -145,16 +113,16 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de aprobar a la mascota seleccionado?</h4>
+                    <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
                 </div>
-                <div id="responseAprobar" class="text-right">
+                <div id="responseActivar" class="text-right">
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="Rechazar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#da2213;color:white;">
@@ -166,9 +134,9 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de rechazar a la mascota seleccionado?</h4>
+                    <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
                 </div>
-                <div id="responseRechazar" class="text-right">
+                <div id="responseInactivar" class="text-right">
                 </div>
             </div>
         </div>
@@ -195,16 +163,16 @@
 @section Scripts {
 
     <script>
-        $("body").on("click", "a.rechazar-dialog-window", null, function (e) {
+        $("body").on("click", "a.delete-dialog-window", null, function (e) {
             var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Anular", "Bandeja")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
-            $("#responseRechazar").html(htmlContent);
-            $('#Rechazar').modal('show');
+            $("#responseInactivar").html(htmlContent);
+            $('#Anular').modal('show');
         });
 
-        $("body").on("click", "a.aprobar-dialog-window", null, function (e) {
+        $("body").on("click", "a.activar-dialog-window", null, function (e) {
             var htmlContent = '<br /><button type="button" id="btnNoActivar" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Activar", "Bandeja")/' + $(this).data('id') + '" class="btn btn-success">Sí</a>';
-            $("#responseAprobar").html(htmlContent);
-            $('#Aprobar').modal('show');
+            $("#responseActivar").html(htmlContent);
+            $('#Activar').modal('show');
         });
     </script>
 
