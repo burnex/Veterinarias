@@ -204,85 +204,7 @@
         });
     </script>
 
-    @*<script>
-        //PARA ABRIR UNA VENTANA DELETE
-        //PARA QUE NO SEA UNA PESTAÑA LE PONEMOS 'VIEW' EN CONTROLLER Y ESTE SCRIPT SE VA PARA EL MISMO DELETE
-        $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Productos")/' + $(this).data('id') + '" class="btn btn-default">Si</a>';
-            $("#response").html(htmlContent);
-            $('#Anular').modal('show');
-        });
-        //Cuadro para poder eliminar registro, con boton no y si
-    </script>*@
-
-
-    @*PARA BUSCAR ALGUN DATO Y OBTENERLO
-        //SI ESTA DENTRO DE UNA PESTAÑA CREATE O EDIT SE PONE ESTE SCRIPT EN SU MISMO ARCHIVO
-        <script>
-        function onclickBuscarProveedor() {
-            debugger;
-            var parametro = $('#parametroBusqueda').val();
-            var url = '@Url.Action("BuscarProveedor", "Productos")';
-            url += '?busqueda=' + parametro;
-            $.ajax({
-                type: 'GET',
-                url: url,
-                dataType: 'html',
-                success: function (data) {
-                    $('#ProveedorModal .teeee').html(data);
-                    $('#ProveedorModal').modal('show');
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve cities.' + ex);
-                }
-            });
-        }
-    </script>
-
-    <script>
-        function GuardarE3() {
-            debugger
-            $('#ProveedorModal').modal('hide');
-            if (dato1 != null && dato2 != null) {
-                $('.nom_prove').val(dato3);
-                document.getElementById('IdProveedores').value = dato1;
-                $('#ruc_prove').val(dato2);
-            }
-        }</script>
-
-    <script>
-        $(document).on('click', '#tablaBuscarProveedor3 tbody tr', function () {
-            debugger;
-            //Selecciona fila.
-            let TotalColumnas = $("#tablaBuscarProveedor3").find("tr");
-            $(TotalColumnas).each(function () {
-                $(this).removeClass('active');
-            });
-            $(this).addClass('active');
-            //Obtiene valores de selección
-            dato1 = $(this).find("td").eq(0).text().trim();
-            dato2 = $(this).find("td").eq(1).text().trim();
-            dato3 = $(this).find("td").eq(2).text().trim();
-        });
-    </script>*@
-
-   @*<script>
-        //PARA HACER EL COMBO ANIDADO
-        //SI ESTA DENTRO DE UNA PESTAÑA CREATE O EDIT SE PONE ESTE SCRIPT EN SU MISMO ARCHIVO
-        function onchangeZonas() {
-            let idZona = $("#comboZona").val();
-            CargarCategorias(idZona);
-        }
-        function CargarCategorias(idZona) {
-            fetchGet("/Productos/CargarCategorias/?id=" + idZona, function (data) {
-                llenarCombo(data, "comboCategoria", "nombreCategoria", "id", "0");
-            });
-        }
-    </script>*@
-
-
-    @*Para ordenar la tabla
-
+    @*PARA DATATABLES*@
     <script>
         $(document).ready(function () {
             //ESTE ES PARA EL DATATABLES
@@ -307,6 +229,6 @@
                 ]
             });
         });
-    </script>*@
+    </script>
 
     }

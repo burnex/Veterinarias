@@ -187,4 +187,31 @@
             }
         });
     </script>
+
+    @*PARA DATATABLES*@
+    <script>
+        $(document).ready(function () {
+            //ESTE ES PARA EL DATATABLES
+            $('#example').DataTable({
+                language: {
+                    search: "Buscar: ",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                    infoFiltered: "(filtrado de _MAX_ registros en total)",
+                    paginate: {
+                        first: "Primero",
+                        previous: "<",
+                        next: ">",
+                        last: "Último"
+                    }
+                },
+                "order": [[0, "asc"]],
+                stateSave: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'excelHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });
+    </script>
     }
