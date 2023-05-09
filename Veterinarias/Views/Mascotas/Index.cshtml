@@ -291,21 +291,6 @@
             }
         }
     </script>
-    
-   @*<script>
-        //CODIGO BRUNO
-        //PARA HACER EL COMBO ANIDADO
-        function onchangeAnimales() {
-            let idAnimal = $("#comboAnimal").val();
-            CargarRazas(idAnimal);
-        }
-        //debugger
-        function CargarRazas(idAnimal) {
-            fetchGet("/Mascotas/CargarRazas/?id=" + idAnimal, function (data) {
-                llenarCombo(data, "comboRaza", "Raza", "id", "0");
-            });
-        }
-    </script>*@
 
     <script>
         //VALENTINA

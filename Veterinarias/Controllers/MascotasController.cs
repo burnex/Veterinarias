@@ -43,12 +43,6 @@ namespace Veterinarias.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<JsonResult> CargarRazas(int id)
-        //{
-        //    var listado = await _context.Razas.Where(t => t.IdAnimal.Equals(id)).ToListAsync();
-        //    return Json(listado);
-        //}
         [HttpGet]
         public async Task<JsonResult> CargarRazas(int id)
         {
