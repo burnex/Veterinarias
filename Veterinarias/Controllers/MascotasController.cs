@@ -18,7 +18,7 @@ namespace Veterinarias.Controllers
         }
 
         //BUSCAR TRABAJADOR
-        public async Task<IActionResult> BuscarPersona(string busqueda)
+        public async Task<IActionResult> BuscarPersonas(string busqueda)
         {
             var personas = await _context.Personas.Where(t => t.Nombres.Contains(busqueda)).ToListAsync();
             return PartialView(personas);

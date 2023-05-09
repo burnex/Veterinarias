@@ -182,6 +182,22 @@
     </div>
 </div>
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="PersonasModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:50%;">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:orange;color:white;">
+                <h5 class="modal-title" id="TittleCreatemodel">Actualizar Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="teeee">Please wait...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
 
     <script>
@@ -226,7 +242,7 @@
         function onclickBuscarPersonas() {
             debugger;
             // Obtener el valor del input que contiene el ID de la persona a buscar
-            var parametro = $('#IdPersonas').val();
+            var parametro = $('#parametroBusqueda').val();
 
             // Construir la URL de la acción del controlador que manejará la búsqueda
             // Cambiar "Mascotas" por el nombre del controlador que manejará la búsqueda
@@ -278,7 +294,8 @@
             // Verifica que los datos estén completos
             if (dato1 != null && dato2 != null && dato3 != null && dato4 != null) {
                 // Asigna los valores seleccionados a los campos correspondientes
-                $('.nom_person').val(dato4); // Nombres
+                //$('.NombrePersona').val(dato4); // Nombres
+                document.getElementById('NombrePersona').value = dato4; // ID
                 document.getElementById('IdPersonas').value = dato1; // ID
                 $('#tipo_doc_person').val(dato2); // Tipo de documento
                 $('#num_doc_person').val(dato3);    // Número de documento
