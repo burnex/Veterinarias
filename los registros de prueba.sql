@@ -1,14 +1,14 @@
-INSERT INTO Mascotas (Animal, Raza, Nombres, FechaNacimiento, Edad, Color, Foto, Dueño, Estado) 
-VALUES (1, 'Chihuahua', 'Firulais', '2018-01-01', 3, 'Café', NULL, 1, 1);
-INSERT INTO Mascotas (IdAnimal, IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (1, 3, 'Luna', '2020-03-15', 'Blanco', 'foto_luna.png', 2, 1)
 INSERT INTO Mascotas (IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (2, 'Luna', '2018-09-12', 'Negro', 'foto_luna.jpg', 2, 0)
+VALUES (43, 'Marcela', '2018-09-12', 'Negro', 'foto_luna.jpg', 2, 'Regis')
+
 INSERT INTO Mascotas (IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (5, 'aa', '2018-09-12', 'Negro', 'foto_luna.jpg', 4, 1)
+VALUES (6, 'Regina', '2018-09-12', 'Negro', 'foto_luna.jpg', 4, 'Regis')
+
 INSERT INTO Mascotas (IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (5, 'aa', '2018-09-12', 'Negro', 'foto_luna.jpg', 4, 'Aprob')
+VALUES (54, 'laura', '2022-09-12', 'Marron', '', 4, 'Regis')
+
 INSERT INTO Mascotas (IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (5, 'laura', '2022-09-12', 'Marron', '', 4, 'Regis')
+VALUES (51, 'Chispita', '2013-03-12', 'Blanco', '', 4, 'Regis')
+
 INSERT INTO Mascotas (IdRaza, Nombres, FechaNacimiento, Color, Foto, IdPersona, Estado)
-VALUES (5, 'Chispita', '2013-03-12', 'Blanco', '', 4, 'Recha')
+VALUES (52, 'Motita', '2022-06-14', 'Blanco', 'foto_motita.jpg', 55, 'Regis')

@@ -8,13 +8,8 @@ namespace Veterinarias.Modelos
     {
         public int Id { get; set; }
 
-        [NotMapped]
-        [DisplayName("Animal")]
-        public string Animal { get; set; } = string.Empty;
-
-        [NotMapped]
         [DisplayName("Raza")]
-        public string Raza { get; set; } = string.Empty;
+        public int IdRaza { get; set; }
 
         [DisplayName("Nombre")]
         public string Nombres { get; set; } = string.Empty;
@@ -32,16 +27,15 @@ namespace Veterinarias.Modelos
         [DisplayName("Color")]
         public string Color { get; set; } = string.Empty;
 
-        [NotMapped]
-        [DisplayName("Dueño")]
-        public string Dueño { get; set; } = string.Empty;
+        [DisplayName("Persona")]
+        public int IdPersona { get; set; }
 
         [DisplayName("Estado")]
-        public string Estado { get; set; }
+        public string? Estado { get; set; }
 
         public string? Foto { get; set; }
         [NotMapped]
-        public IFormFile FotoIFormFile { get; set; }
+        public IFormFile? FotoIFormFile { get; set; }
         public string FotoURL => Foto == null ? "" : Foto;
 
         public string FotoURL2
@@ -58,5 +52,10 @@ namespace Veterinarias.Modelos
                 }
             }
         }
+        [NotMapped]
+        public string? PersonaDescripcion { get; set; }
+
+        [NotMapped]
+        public int IdAnimal { get; set; }
     }
 }

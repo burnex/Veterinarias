@@ -221,34 +221,106 @@
         });
     </script>
 
+    @*Para buscar*@
     <script>
-        //PARA ABRIR UNA VENTANA DELETE
-        $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Trabajadores")/' + $(this).data('id') + '" class="btn btn-default">Si</a>';
-            $("#response").html(htmlContent);
-            $('#Anular').modal('show');
-        });
-        //Cuadro para poder eliminar registro, con boton no y si
+        function onclickBuscarPersonas() {
+            debugger;
+            // Obtener el valor del input que contiene el ID de la persona a buscar
+            var parametro = $('#IdPersonas').val();
+
+            // Construir la URL de la acción del controlador que manejará la búsqueda
+            // Cambiar "Mascotas" por el nombre del controlador que manejará la búsqueda
+            // Cambiar "BuscarPersonas" por el nombre de la acción que manejará la búsqueda
+            var url = '@Url.Action("BuscarPersonas", "Mascotas")';
+            url += '?busqueda=' + parametro;
+
+            // Hacer la petición AJAX al servidor
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function (data) {
+                    // Agregar la respuesta HTML a un elemento en el modal correspondiente
+                    // Cambiar "PersonasModal" por el ID del modal correspondiente
+                    $('#PersonasModal .teeee').html(data);
+                    // Mostrar el modal correspondiente
+                    $('#PersonasModal').modal('show');
+                },
+                error: function (ex) {
+                    // Manejar el error si la petición AJAX falla
+                    alert('Failed to retrieve cities.' + ex);
+                }
+            });
+        }
     </script>
 
     <script>
-        //PARA HACER EL COMBO ANIDADO
-        function onchangeDepartamento() {
-            let idDepartamento = $("#comboDepartamento").val();
-            CargarProvincia(idDepartamento);
+        // Función para seleccionar fila y obtener valores de selección
+        $(document).on('click', '#tablaBuscarPersona tbody tr', function () {
+            //Selecciona fila.
+            let TotalColumnas = $("#tablaBuscarPersona").find("tr");
+            $(TotalColumnas).each(function () {
+                $(this).removeClass('active');
+            });
+            $(this).addClass('active');
+            //Obtiene valores de selección
+            dato1 = $(this).find("td").eq(0).text().trim();
+            dato2 = $(this).find("td").eq(1).text().trim();
+            dato3 = $(this).find("td").eq(2).text().trim();
+            dato4 = $(this).find("td").eq(3).text().trim();
+        });
+    </script>
+
+    <script>
+        function GuardarE3() {
+            //debugger
+
+            // Verifica que los datos estén completos
+            if (dato1 != null && dato2 != null && dato3 != null && dato4 != null) {
+                // Asigna los valores seleccionados a los campos correspondientes
+                $('.nom_person').val(dato4); // Nombres
+                document.getElementById('IdPersonas').value = dato1; // ID
+                $('#tipo_doc_person').val(dato2); // Tipo de documento
+                $('#num_doc_person').val(dato3);    // Número de documento
+
+                // Oculta el modal de personas nuevamente
+                $('#PersonasModal').modal('hide');
+        } else {
+                // Si los datos están incompletos, muestra un mensaje de alerta
+                alert('Debe seleccionar una persona de la lista.');
+            }
         }
-        function CargarProvincia(idDepartamento) {
-            fetchGet("/Trabajadores/CargarProvincias/?id=" + idDepartamento, function (data) {
-                llenarCombo(data, "comboProvincia", "nombreProvincia", "id", "0");
+    </script>
+    
+   @*<script>
+        //CODIGO BRUNO
+        //PARA HACER EL COMBO ANIDADO
+        function onchangeAnimales() {
+            let idAnimal = $("#comboAnimal").val();
+            CargarRazas(idAnimal);
+        }
+        //debugger
+        function CargarRazas(idAnimal) {
+            fetchGet("/Mascotas/CargarRazas/?id=" + idAnimal, function (data) {
+                llenarCombo(data, "comboRaza", "Raza", "id", "0");
             });
         }
-        function onchangeProvincia() {
-            let idProvincia = $("#comboProvincia").val();
-            CargarDistritos(idProvincia);
-        }
-        function CargarDistritos(idProvincia) {
-            fetchGet("/Trabajadores/CargarDistritos/?id=" + idProvincia, function (data) {
-                llenarCombo(data, "comboDistrito", "nombreDistrito", "id", "0");
+    </script>*@
+
+    <script>
+        //VALENTINA
+        function onchangeAnimales() {
+            var animalId = $("#comboAnimal").val();
+            $.ajax({
+                url: "/Mascotas/CargarRazas?id=" + animalId,
+                type: "GET",
+                success: function (data) {
+                    var razas = $("#comboRaza");
+                    razas.empty();
+                    $.each(data, function (i, item) {
+                        razas.append($('<option>').val(item.id).text(item.nombre));
+                    });
+                }
             });
         }
     </script>
