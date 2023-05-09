@@ -16,6 +16,5 @@
   <ItemGroup>
     <Folder Include="Views\Veterinarios\" />
     <Folder Include="Views\Personas\" />
-    <Folder Include="Views\Razas\" />
   </ItemGroup>
 </Project>
