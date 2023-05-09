@@ -7,28 +7,23 @@
     </p>*@
 <div class="mail-box">
     <h2>Veterinarios</h2>
-    <div class="form-row mb-3">
-        <div class="col">
-            <label for="tipoDoc">Tipo Documento:</label>
-            <select id="tipoDoc" class="form-control">
-                <option value="">Todos</option>
-                <option value="DNI">DNI</option>
-                <option value="Carnet de Extranjería">Carnet de Extranjería</option>
-                <option value="Pasaporte">Pasaporte</option>
-            </select>
+    <form asp-action="Index">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="tipoDoc">Tipo Documento:</label>
+                <select id="mySelect" class="form-control" asp-items="ViewBag.TipoDocumento" name="TipoDocumento"></select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sexo">Genero:</label>
+                <select id="mySelect" class="form-control" asp-items="ViewBag.TipoSexo" name="Sexo"></select>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="submit" class="btn btn-success" value="Aplicar Filtros" />
+                <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+            </div>
         </div>
-        <div class="col">
-            <label for="sexo">Sexo:</label>
-            <select id="sexo" class="form-control">
-                <option value="">Ambos</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-        </div>
-        <div class="col align-self-end">
-            <button type="button" class="btn btn-primary">Aplicar Filtros</button>
-        </div>
-    </div>
+    </form>
+    <br />
     <p>
         <a asp-action="Create" class="btn btn-primary add-dialog-window">Nuevo Registro</a>
     </p>
@@ -125,27 +120,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#da2213;color:white;">
-                <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title">Anular</h2>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
-                </div>
-                <div id="responseInactivar" class="text-right">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -161,6 +135,27 @@
                     <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
                 </div>
                 <div id="responseActivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#da2213;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Anular</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
+                </div>
+                <div id="responseInactivar" class="text-right">
                 </div>
             </div>
         </div>
@@ -213,6 +208,10 @@
             $("#responseActivar").html(htmlContent);
             $('#Activar').modal('show');
         });
+
+        if ('@ViewBag.Sexo' != '') {
+            $('#Sexo').val('@ViewBag.Sexo')
+        }
     </script>
 
     <script>
@@ -250,38 +249,6 @@
                 });
             }
         });
-    </script>
-
-    <script>
-        //PARA ABRIR UNA VENTANA DELETE
-        $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Trabajadores")/' + $(this).data('id') + '" class="btn btn-default">Si</a>';
-            $("#response").html(htmlContent);
-            $('#Anular').modal('show');
-        });
-        //Cuadro para poder eliminar registro, con boton no y si
-    </script>
-
-    <script>
-        //PARA HACER EL COMBO ANIDADO
-        function onchangeDepartamento() {
-            let idDepartamento = $("#comboDepartamento").val();
-            CargarProvincia(idDepartamento);
-        }
-        function CargarProvincia(idDepartamento) {
-            fetchGet("/Trabajadores/CargarProvincias/?id=" + idDepartamento, function (data) {
-                llenarCombo(data, "comboProvincia", "nombreProvincia", "id", "0");
-            });
-        }
-        function onchangeProvincia() {
-            let idProvincia = $("#comboProvincia").val();
-            CargarDistritos(idProvincia);
-        }
-        function CargarDistritos(idProvincia) {
-            fetchGet("/Trabajadores/CargarDistritos/?id=" + idProvincia, function (data) {
-                llenarCombo(data, "comboDistrito", "nombreDistrito", "id", "0");
-            });
-        }
     </script>
 
     @*PARA DATATABLES*@
