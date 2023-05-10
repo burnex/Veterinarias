@@ -44,7 +44,16 @@
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
-                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                            @if (item.Estado)
+                            {
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+
+                            }
+                            else
+                            {
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+
+                            }
                         </td>
                     </tr>
                 }
@@ -88,11 +97,58 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="Activar" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3fb618;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Activar</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de activar el registro seleccionado?</h4>
+                </div>
+                <div id="responseActivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#da2213;color:white;">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title">Anular</h2>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4>¿Estás seguro de anular el registro seleccionado?</h4>
+                </div>
+                <div id="responseInactivar" class="text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script>
+        $("body").on("click", "a.activar-dialog-window", null, function (e) {
+            var htmlContent = '<br /><button type="button" id="btnNoActivar" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Activar", "Razas")/' + $(this).data('id') + '" class="btn btn-success">Sí</a>';
+            $("#responseActivar").html(htmlContent);
+            $('#Activar').modal('show');
+        });
+    </script>
+    <script>
         $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Delete", "Provincias")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
-            $("#response").html(htmlContent);
+            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Anular", "Razas")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
+            $("#responseInactivar").html(htmlContent);
             $('#Anular').modal('show');
         });
     </script>

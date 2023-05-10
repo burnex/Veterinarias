@@ -41,5 +41,22 @@ namespace Veterinarias.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Activar(int id)
+        {
+            var animales = await _context.Animales.FindAsync(id);
+            animales.Estado = true;
+            _context.Update(animales);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Anular(int id)
+        {
+            var animales = await _context.Animales.FindAsync(id);
+            animales.Estado = false;
+            _context.Update(animales);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

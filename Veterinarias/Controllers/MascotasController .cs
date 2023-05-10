@@ -35,14 +35,15 @@ namespace Veterinarias.Controllers
         {
             var listarMascotas = new Mascotas { FechaNacimiento = DateTime.Now.Date , FechaRegistro = DateTime.Now.Date};
             
-            var Animal = await _context.Animales.ToListAsync();
+            var Animal = await _context.Animales.Where(t => t.Estado==true).ToListAsync();
             ViewData["IdAnimal"] = new SelectList(Animal, "Id", "Nombre");
             
             return PartialView(listarMascotas);
         }
-        public async Task<JsonResult> CargarRaza(int id)
+        public async Task<JsonResult> CargarRazas(int id)
         {
-            var listado = await _context.Razas.Where(t => t.IdAnimal.Equals(id)).ToListAsync();
+            var listado = await _context.Razas.Where(t => t.IdAnimal.Equals(id) && t.Estado).ToListAsync();
+            
             return Json(listado);
         }
         [HttpPost]
@@ -73,6 +74,17 @@ namespace Veterinarias.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var mascota = await _context.Mascotas.FindAsync(id);
+
+            var raza = await _context.Razas.FindAsync(mascota.IdRaza);
+
+            //var Animal = await _context.Animales.Where(t => t.Estado == true).ToListAsync();
+            var Animal = await _context.Animales.ToListAsync();
+            ViewData["IdAnimal"] = new SelectList(Animal, "Id", "Nombre", 10);
+
+            var razas = await _context.Razas.Where(t => t.IdAnimal == raza.IdAnimal && t.Estado == true).ToListAsync();
+            ViewData["IdRaza"] = new SelectList(razas, "Id", "Nombre", raza.Id);
+
+
             return PartialView(mascota);
         }
         [HttpPost]

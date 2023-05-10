@@ -205,13 +205,16 @@
     <script>
         function onchangeAnimal() {
             let idAnimal = $("#comboAnimal").val();
+            debugger
             CargarRaza(idAnimal);
         }
         function CargarRaza(idAnimal) {
-            fetchGet("/Mascotas/CargarRaza/?id=" + idAnimal, function (data) {
-                llenarCombo(data, "comboRaza", "nombreRaza", "id", "0");
+            debugger
+            fetchGet("/Mascotas/CargarRazas/?id=" + idAnimal, function (data) {
+                llenarCombo(data, "comboRaza", "nombre", "id", "0");
             });
         }
+        
     </script>
     <script>
         function onclickBuscarDueño() {
@@ -253,7 +256,7 @@
         function GuardarDueñoSeleccionado() {
             debugger
             $('#ModalDueño').modal('hide');
-            if (_id != null && _Tipo != null) {
+            if (_id != null && _Nombre != null) {
                 /*Guardar ID en IdDueño*/
                 document.getElementById('IdDueño').value = _id;
                 /*Guardar Nombre en NombreTraba*/

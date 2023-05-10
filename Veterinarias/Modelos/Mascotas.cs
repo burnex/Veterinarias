@@ -18,6 +18,7 @@ namespace Veterinarias.Modelos
         public string Nombres { get; set; } = string.Empty;
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         [DataType(DataType.Date)]
+        [DisplayName("Fecha Nacimiento")]
         public DateTime FechaNacimiento { get; set; }
         public string Color { get; set; } = string.Empty;
         public int IdPersona { get; set; }
@@ -26,6 +27,7 @@ namespace Veterinarias.Modelos
         [DisplayName("Foto")]
         public IFormFile FotoIFormFile { get; set; }
         public string Estado { get; set; } = string.Empty;
+        [DisplayName("Fecha Registro")]
         public DateTime FechaRegistro { get; set; }
 
     }

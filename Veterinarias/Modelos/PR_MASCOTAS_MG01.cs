@@ -26,7 +26,7 @@ namespace Veterinarias.Modelos
         [Required]
         [DisplayName("Dueño")]
         public string NombreDueño { get; set; } = string.Empty;
-        public string Estado { get; set; } = string.Empty;
+        public string? Estado { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }

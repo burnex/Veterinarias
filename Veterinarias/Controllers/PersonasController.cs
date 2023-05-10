@@ -47,7 +47,7 @@ namespace Veterinarias.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Personas Model)
         {
-            Model.Estado = true;
+            //Model.Estado = true;
 
             if (Model.FotoIFormFile != null)
             {
@@ -103,6 +103,23 @@ namespace Veterinarias.Controllers
             modelOld.Edad = model.Edad;
             modelOld.Sexo = model.Sexo;
             _context.Update(modelOld);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Activar(int id)
+        {
+            var personas = await _context.Personas.FindAsync(id);
+            personas.Estado = true; 
+            _context.Update(personas);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Anular(int id)
+        {
+            var personas = await _context.Personas.FindAsync(id);
+            personas.Estado = false;
+            _context.Update(personas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

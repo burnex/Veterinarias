@@ -2,7 +2,7 @@
 
 <div class="ibox-content">
     <div class="row">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col col-sm-12">
                 <div class="form-group">
@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <div class="input text">
                         <label asp-for="IdRaza" class="control-label"></label>
-                        <select asp-for="IdRaza" class="form-control" id="comboRaza"></select>
+                        <select asp-for="IdRaza" class="form-control" asp-items="ViewBag.IdRaza" id="comboRaza"></select>
                         <span asp-validation-for="IdRaza" class="text-danger"></span>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="form-group">
                     <div class="input text">
                         <label asp-for="FotoIFormFile" class="control-label"></label>
-                        <input asp-for="FotoIFormFile" type="file" accept="image/png, image/jpeg"/>
+                        <input asp-for="FotoIFormFile" type="file" accept="image/png, image/jpeg" />
                         <span asp-validation-for="FotoIFormFile" class="text-danger"></span>
                     </div>
                 </div>
@@ -100,16 +100,3 @@
         </div>
     </div>
 </div>
-@*@section Scripts {
-    <script>
-        function onchangeAnimal() {
-            let idAnimal = $("#comboAnimal").val();
-            CargarRaza(idAnimal);
-        }
-        function CargarRaza(idAnimal) {
-            fetchGet("/Mascotas/CargarRaza/?id=" + idAnimal, function (data) {
-                llenarCombo(data, "comboRaza", "nombreRaza", "id", "0");
-            });
-        }
-    </script>
-}*@
