@@ -124,11 +124,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#3fb618;color:white;">
-                <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title">Activar</h2>
+                <h5 class="modal-title" id="exampleModalLabel">Activar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
@@ -141,15 +138,32 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="Activar123" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3fb618;color:white;">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#da2213;color:white;">
-                <button data-dismiss="modal" class="close" type="button">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title">Anular</h2>
+                <h5 class="modal-title" id="exampleModalLabel">Anular</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
@@ -166,10 +180,8 @@
     <div class="modal-dialog modal-lg" style="width:50%;">
         <div class="modal-content">
             <div class="modal-header" style="background-color:green;color:white;">
-                <h5 class="modal-title" id="TittleCreatemodel">Crear Registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Crear Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="teeee">Please wait...</div>
@@ -182,10 +194,8 @@
     <div class="modal-dialog modal-lg" style="width:50%;">
         <div class="modal-content">
             <div class="modal-header" style="background-color:orange;color:white;">
-                <h5 class="modal-title" id="TittleCreatemodel">Actualizar Registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="teeee">Please wait...</div>
@@ -199,13 +209,13 @@
 
     <script>
         $("body").on("click", "a.delete-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Anular", "Personas")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
+            var htmlContent = '<br /><button type="button" id="btnNo" class="btn btn-danger" style="background-color:#da2213;color:white;" data-bs-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Anular", "Personas")/' + $(this).data('id') + '" class="btn btn-default">Sí</a>';
             $("#responseInactivar").html(htmlContent);
             $('#Anular').modal('show');
         });
 
         $("body").on("click", "a.activar-dialog-window", null, function (e) {
-            var htmlContent = '<br /><button type="button" id="btnNoActivar" class="btn btn-danger" style="background-color:#da2213;color:white;" data-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Activar", "Personas")/' + $(this).data('id') + '" class="btn btn-success">Sí</a>';
+            var htmlContent = '<br /><button type="button" id="btnNoActivar" class="btn btn-danger" style="background-color:#da2213;color:white;" data-bs-dismiss="modal" aria-hidden="true">No</button>&nbsp&nbsp<a href="@Url.Action("Activar", "Personas")/' + $(this).data('id') + '" class="btn btn-success">Sí</a>';
             $("#responseActivar").html(htmlContent);
             $('#Activar').modal('show');
         });
