@@ -29,10 +29,7 @@
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
                         <td>
-                            @* @Html.DisplayFor(modelItem => item.Estado) ESTO HARA QUE HAYA UN CHECK LIST*@ 
-                            <span class="estado-badge @(item.Estado ? "badge-success" : "badge-danger")">
-                                @(item.Estado ? "Activado" : "Anulado")
-                            </span>
+                            <span id="boot-icon" class="@item.EstadoIcon" style="font-size: 1rem; color: rgb(0, 0, 255);" disable></span>
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
