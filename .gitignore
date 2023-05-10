@@ -404,3 +404,6 @@ FodyWeavers.xsd
 /.gitignore
 /.gitignore
 /.gitignore
+/[PR_PERSONAS_S01].sql
+*.sql
+/.gitignore

@@ -25,12 +25,20 @@ namespace Veterinarias.Controllers
         }
 
         //VISUALIZACION INDEX
-        [HttpGet]
-        public IActionResult Index()
+        //[HttpGet(Name ="Index")]
+        public IActionResult Index(int IdAnimal, int IdRaza, string NombrePersona)
         {
-            var mascotas = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01");
+            var Animales = _context.Animales.ToList();
+            ViewData["IdAnimal"] = new SelectList(Animales, "Id", "Nombre");
+
+            var raza = new List<Razas>();
+            raza.Add(new Razas { Id = 0, Nombre = "Seleccionar" });
+            ViewData["IdRaza"] = new SelectList(raza, "Id", "Nombre");
+
+            var mascotas = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01 @p0, @p1, @p2", IdAnimal, IdRaza, NombrePersona).ToList();
             return View(mascotas);
         }
+
 
         //CREATE ACTUALIZADO
         [HttpGet]

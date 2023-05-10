@@ -11,16 +11,20 @@
         <div class="row">
             <div class="form-group col-md-5">
                 <label for="animalNombre">Animal</label>
-                <select id="mySelect" class="form-control" asp-items="ViewBag.IdAnimal" name="IdAnimal"></select>
+                <select id="comboAnimal" class="form-control" asp-items="ViewBag.IdAnimal" name="IdAnimal" onchange="onchangeAnimales()"></select>
             </div>
             <div class="form-group col-md-5">
                 <label for="razaNombre">Raza</label>
-                <select id="mySelect" class="form-control" asp-items="ViewBag.IdRaza" name="IdRaza"></select>
+                <select id="comboRaza" class="form-control" asp-items="ViewBag.IdRaza" name="IdRaza"></select>
             </div>
+
             <div class="form-group col-md-5">
-                <label for="personaNombre">Dueño</label>
-                <select id="mySelect" class="form-control" asp-items="ViewBag.IdPersona" name="IdPersona"></select>
+                <label for="DueñoNombre">Dueño</label>
+                <a onclick="onclickBuscarPersonas()" class="btn btn-sm btn-info text-white">Buscar</a>
+                <input required disabled class="form-control" id="NombrePersona" />
+                <input type="hidden" class="form-control" id="NombrePersona2" name="NombrePersona" />
             </div>
+
             <div class="form-group col-md-5">
                 <input type="submit" class="btn btn-success" value="Aplicar Filtros" />
                 <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
@@ -284,7 +288,8 @@
                 // Asigna los valores seleccionados a los campos correspondientes
                 //$('.NombrePersona').val(dato4); // Nombres
                 document.getElementById('NombrePersona').value = dato4; // ID
-                document.getElementById('IdPersonas').value = dato1; // ID
+                document.getElementById('NombrePersona2').value = dato4; // ID
+                //document.getElementById('IdPersonas').value = dato1; // ID
                 $('#tipo_doc_person').val(dato2); // Tipo de documento
                 $('#num_doc_person').val(dato3);    // Número de documento
 
