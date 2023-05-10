@@ -21,7 +21,7 @@ namespace Veterinarias.Modelos
         [NotMapped]
         [DisplayName("Foto")]
         public IFormFile FotoIFormFile { get; set; }
-
+        [Required]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         [DataType(DataType.Date)]
         public DateTime FechaNacimiento { get; set; }

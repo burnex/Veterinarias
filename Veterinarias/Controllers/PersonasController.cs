@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrabajadoresPrueba.Models;
@@ -17,7 +16,7 @@ namespace Veterinarias.Controllers
         public PersonasController(DataContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
-            _webHostEnvironment = webHostEnvironment;   
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -36,8 +35,8 @@ namespace Veterinarias.Controllers
             ViewData["TipoDocumento"] = new SelectList(TiposDocumentos, "TipoDocumento", "NombreDocumento");
 
             var Sexo = new List<Sexo>();
-            Sexo.Add(new Models.Sexo {SexoItem = "F", SexoDesc = "Femenino" });
-            Sexo.Add(new Models.Sexo {SexoItem = "M", SexoDesc = "Masculino" });
+            Sexo.Add(new Models.Sexo { SexoItem = "F", SexoDesc = "Femenino" });
+            Sexo.Add(new Models.Sexo { SexoItem = "M", SexoDesc = "Masculino" });
 
             ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDesc");
 
@@ -47,7 +46,7 @@ namespace Veterinarias.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Personas Model)
         {
-            //Model.Estado = true;
+            Model.Estado = true;
 
             if (Model.FotoIFormFile != null)
             {
@@ -84,8 +83,8 @@ namespace Veterinarias.Controllers
             ViewData["TipoDocumento"] = new SelectList(TiposDocumentos, "TipoDocumento", "NombreDocumento", personas.TipoDocumento);
 
             var Sexo = new List<Sexo>();
-            Sexo.Add(new Models.Sexo {SexoItem = "F", SexoDesc = "Femenino" });
-            Sexo.Add(new Models.Sexo {SexoItem = "M", SexoDesc = "Masculino" });
+            Sexo.Add(new Models.Sexo { SexoItem = "F", SexoDesc = "Femenino" });
+            Sexo.Add(new Models.Sexo { SexoItem = "M", SexoDesc = "Masculino" });
 
             ViewData["Sexo"] = new SelectList(Sexo, "SexoItem", "SexoDesc", personas.Sexo);
 
@@ -98,7 +97,7 @@ namespace Veterinarias.Controllers
             modelOld.TipoDocumento = model.TipoDocumento;
             modelOld.NumeroDocumento = model.NumeroDocumento;
             modelOld.Nombres = model.Nombres;
-            modelOld.FotoIFormFile   = model.FotoIFormFile;
+            modelOld.FotoIFormFile = model.FotoIFormFile;
             modelOld.FechaNacimiento = model.FechaNacimiento;
             modelOld.Edad = model.Edad;
             modelOld.Sexo = model.Sexo;
@@ -109,7 +108,7 @@ namespace Veterinarias.Controllers
         public async Task<IActionResult> Activar(int id)
         {
             var personas = await _context.Personas.FindAsync(id);
-            personas.Estado = true; 
+            personas.Estado = true;
             _context.Update(personas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

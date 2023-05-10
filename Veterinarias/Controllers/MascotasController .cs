@@ -49,6 +49,7 @@ namespace Veterinarias.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Mascotas Model)
         {
+            Model.Estado = "REGIS";
 
             if (Model.FotoIFormFile != null)
             {

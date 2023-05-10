@@ -51,7 +51,7 @@ namespace Veterinarias.Controllers
             razas.Estado = true;
             _context.Update(razas);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { id = razas.IdAnimal });
         }
 
         public async Task<IActionResult> Anular(int id)
@@ -60,7 +60,7 @@ namespace Veterinarias.Controllers
             razas.Estado = false;
             _context.Update(razas);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", new { id = razas.IdAnimal });
         }
     }
 }
