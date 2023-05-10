@@ -1,9 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Animales</h5>
+                <p class="card-text">Mantenimiento de Departamentos, Provincias y Distritos</p>
+                <a asp-controller="Animales" asp-action="Index" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Personas</h5>
+                <p class="card-text">Mantenimiento de Personas, Provincias y Distritos</p>
+                <a asp-controller="Personas" asp-action="Index" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Veterinarios</h5>
+                <p class="card-text">Mantenimiento de Veterinarios</p>
+                <a asp-controller="Veterinarios" asp-action="Index" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
 </div>
 
+<br />
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mascotas</h5>
+                <p class="card-text">Mantenimiento de Trabajadores</p>
+                <a asp-controller="Mascotas" asp-action="Index" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Bandeja</h5>
+                <p class="card-text">Mantenimiento de Veterinarios</p>
+                <a asp-controller="Bandeja" asp-action="Index" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
+</div>

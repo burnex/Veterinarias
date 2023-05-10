@@ -24,12 +24,14 @@ namespace Veterinarias.Controllers
         public IActionResult Index(string TipoDocumento, string Sexo)
         {
             var TiposDocumentos = new List<TiposDocumentos>();
+            TiposDocumentos.Add(new TiposDocumentos { TipoDocumento = "", NombreDocumento = "Seleccionar" });
             TiposDocumentos.Add(new TiposDocumentos { TipoDocumento = "DNI", NombreDocumento = "DNI" });
             TiposDocumentos.Add(new TiposDocumentos { TipoDocumento = "CXE", NombreDocumento = "Carnet Extranjeria" });
             TiposDocumentos.Add(new TiposDocumentos { TipoDocumento = "PAS", NombreDocumento = "Pasaporte" });
             ViewBag.TipoDocumento = new SelectList(TiposDocumentos, "TipoDocumento", "NombreDocumento", TipoDocumento);
 
             var TiposSexo = new List<TiposSexo>();
+            TiposSexo.Add(new TiposSexo { TipoSexo = "", NombreSexo = "Seleccionar" });
             TiposSexo.Add(new TiposSexo { TipoSexo = "F", NombreSexo = "Femenino" });
             TiposSexo.Add(new TiposSexo { TipoSexo = "M", NombreSexo = "Masculino" });
             ViewBag.TipoSexo = new SelectList(TiposSexo, "TipoSexo", "NombreSexo", Sexo);

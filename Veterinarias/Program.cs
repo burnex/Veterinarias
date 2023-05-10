@@ -9,6 +9,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>
     (x => x.UseSqlServer("name=AzureConnection"));
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+}
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

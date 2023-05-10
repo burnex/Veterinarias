@@ -22,7 +22,8 @@ namespace Veterinarias.Modelos
         //[DisplayName("Fecha Nacimiento")]
         //public DateTime FechaNacimiento { get; set; } = DateTime.Now.Date;
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime FechaNacimiento { get; set; }
 
         [NotMapped]
@@ -52,6 +53,9 @@ namespace Veterinarias.Modelos
                 }
             }
         }
+
+        [DisplayName("Foto")]
+        public string FotoURLEdit => string.IsNullOrEmpty(Foto) ? "/images/imageDefault.png" : Foto;
 
 
     }
