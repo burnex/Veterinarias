@@ -8,4 +8,21 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Bandeja\" />
+    <Folder Include="Views\Consultas\" />
+    <Folder Include="Views\Baños\" />
+    <Folder Include="Views\Razas\" />
+    <Folder Include="Views\Visitas\" />
+    <Folder Include="Views\Veterinarios\" />
+    <Folder Include="Views\Personas\" />
+    <Folder Include="wwwroot\images\MascotasFoto\" />
+    <Folder Include="wwwroot\images\VeterinariosFoto\" />
+    <Folder Include="wwwroot\images\PersonasFoto\" />
+  </ItemGroup>
 </Project>
