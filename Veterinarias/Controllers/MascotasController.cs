@@ -17,7 +17,7 @@ namespace Veterinarias.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        //BUSCAR TRABAJADOR
+        //BUSCAR PERSONAS
         public async Task<IActionResult> BuscarPersonas(string busqueda)
         {
             var personas = await _context.Personas.Where(t => t.Nombres.Contains(busqueda)).ToListAsync();

@@ -10,11 +10,11 @@
     <form asp-action="Index">
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="tipoDoc">Tipo Documento:</label>
+                <label for="tipoDoc">Tipo Documento</label>
                 <select id="mySelect" class="form-control" asp-items="ViewBag.TipoDocumento" name="TipoDocumento"></select>
             </div>
             <div class="form-group col-md-4">
-                <label for="sexo">Genero:</label>
+                <label for="sexo">Género</label>
                 <select id="mySelect" class="form-control" asp-items="ViewBag.TipoSexo" name="Sexo"></select>
             </div>
             <div class="form-group col-md-4">
@@ -80,7 +80,7 @@
                         <td>
                             @if (!string.IsNullOrEmpty(item.Foto))
                             {
-                                <img src="@item.Foto" class="img-listado" alt="Foto de la persona" />
+                                <img src="@item.Foto" class="img-listado" alt="Foto del veterinario" />
                             }
                         </td>
 
@@ -99,18 +99,18 @@
                         <td>
                             @* @Html.DisplayFor(modelItem => item.Estado)*@
                             <span class="estado-badge @(item.Estado ? "badge-success" : "badge-danger")">
-                                @(item.Estado ? "Anulado" : "Activado")
+                                @(item.Estado ? "Activado" : "Anulado")
                             </span>
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning edit-dialog-window">Editar</a>
                             @if (item.Estado)
                             {
-                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
                             }
                             else
                             {
-                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
                             }
                         </td>
                     </tr>
@@ -132,7 +132,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de activar Veterinario seleccionado?</h4>
+                    <h4>¿Estás seguro de activar al veterinario seleccionado?</h4>
                 </div>
                 <div id="responseActivar" class="text-right">
                 </div>
@@ -153,7 +153,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <h4>¿Estás seguro de anular Veterinario seleccionado?</h4>
+                    <h4>¿Estás seguro de anular al veterinario seleccionado?</h4>
                 </div>
                 <div id="responseInactivar" class="text-right">
                 </div>
