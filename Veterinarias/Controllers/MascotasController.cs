@@ -28,17 +28,36 @@ namespace Veterinarias.Controllers
         //[HttpGet(Name ="Index")]
         public IActionResult Index(int IdAnimal, int IdRaza, string NombrePersona)
         {
+            Console.WriteLine($"IdAnimal: {IdAnimal}, IdRaza: {IdRaza}, NombrePersona: {NombrePersona}");
+            // Obtener la lista de animales y razas desde la base de datos
             var Animales = _context.Animales.ToList();
-            ViewData["IdAnimal"] = new SelectList(Animales, "Id", "Nombre");
+            var Razas = _context.Razas.ToList();
 
-            var raza = new List<Razas>();
-            raza.Add(new Razas { Id = 0, Nombre = "Seleccionar" });
-            ViewData["IdRaza"] = new SelectList(raza, "Id", "Nombre");
+            //AGREGAR LA OPCION SELECCIONAR A LAS LISTAS DE ANIMALES Y RAZAS
+            Animales.Insert(0, new Animales { Id = 0, Nombre = "Seleccionar" });
+            Razas.Insert(0, new Razas { Id = 0, Nombre = "Seleccionar" });
+
+            //CREAR LOS SELECTLIST PARA ENVIAR A LA VISTA
+            ViewData["IdAnimal"] = new SelectList(Animales, "Id", "Nombre");
+            ViewData["IdRaza"] = new SelectList(Razas, "Id", "Nombre");
+
+            ViewBag.IdAnimal = new SelectList(Animales, "Id", "Nombre", IdAnimal);
+            ViewBag.IdRaza = new SelectList(Razas, "Id", "Nombre", IdRaza);
 
             var mascotas = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01 @p0, @p1, @p2", IdAnimal, IdRaza, NombrePersona).ToList();
             return View(mascotas);
-        }
 
+            //
+            //var Animales = _context.Animales.ToList();
+            //ViewData["IdAnimal"] = new SelectList(Animales, "Id", "Nombre");
+
+            //var raza = new List<Razas>();
+            //raza.Add(new Razas { Id = 0, Nombre = "Seleccionar" });
+            //ViewData["IdRaza"] = new SelectList(raza, "Id", "Nombre");
+
+            //var mascotas = _context.PR_MASCOTAS_S01.FromSqlRaw("exec PR_MASCOTAS_S01 @p0, @p1, @p2", IdAnimal, IdRaza, NombrePersona).ToList();
+            //return View(mascotas);
+        }
 
         //CREATE ACTUALIZADO
         [HttpGet]
@@ -49,7 +68,6 @@ namespace Veterinarias.Controllers
 
             var mascotas = new Mascotas { FechaNacimiento = DateTime.Now.Date };
             return PartialView(mascotas);
-
         }
 
         [HttpGet]

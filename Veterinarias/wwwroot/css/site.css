@@ -21,3 +21,11 @@ body {
     width: 50px; /* Ajusta el ancho deseado */
     height: auto; /* Ajusta la altura proporcionalmente */
 }
+
+.btn-group > .btn {
+    border-right: 5px solid #ddd;
+}
+
+.btn-group > .btn:last-child {
+    border-right: none;
+}

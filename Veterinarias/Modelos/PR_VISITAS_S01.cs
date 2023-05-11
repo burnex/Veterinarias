@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Veterinarias.Modelos
@@ -46,8 +47,8 @@ namespace Veterinarias.Modelos
         [DisplayName("Veterinario")]
         public string Veterinario { get; set; } = string.Empty;
 
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime HoraIngreso { get; set; }
+        public string HoraIngreso { get; set; }
+
 
         [DisplayName("Atencion")]
         public string Atencion { get; set; } = string.Empty;
