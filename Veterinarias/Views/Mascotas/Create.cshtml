@@ -2,7 +2,7 @@
 
 <div class="ibox-content">
     <div class="row">
-        @*FILTRA EN MI INDEX PERO YA NO EDITA EL COMBO NI EL METODO BUSCAR*@
+       @*FILTRA EN MI INDEX PERO YA NO EDITA EL COMBO NI EL METODO BUSCAR*@
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col col-sm-12">
@@ -42,7 +42,7 @@
                                 Dueño
                                 <a onclick="onclickBuscarPersonas()" class="btn btn-sm btn-info text-white">Buscar</a>
                             </label>
-                            <input required disabled class="form-control" id="NombrePersona" name="NombrePersona" />
+                            <input required disabled class="form-control" id="NombrePersona2" name="NombrePersona2" />
                             <input type="hidden" asp-for="PersonaDescripcion" id="emp_person" name="PersonaDescripcion" class="form-control" />
                             <input type="hidden" id="TipoDocumento" name="TipoDocumento" class="form-control" />
                             <input type="hidden" id="NumeroDocumento" name="NumeroDocumento" class="form-control" />

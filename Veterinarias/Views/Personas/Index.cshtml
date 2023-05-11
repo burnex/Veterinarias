@@ -93,7 +93,7 @@
                         <td>
                             @* @Html.DisplayFor(modelItem => item.Estado)*@
                             <span class="estado-badge @(item.Estado ? "badge-success" : "badge-danger")">
-                                @(item.Estado ? "Anulado" : "Activado")
+                                @(item.Estado ? "Activado" : "Anulado")
                             </span>
                         </td>
                         <td>
@@ -101,11 +101,11 @@
                             @if (item.Estado)
                             {
 
-                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
+                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
                             }
                             else
                             {
-                                <a data-id="@item.Id" class="btn btn-danger delete-dialog-window">Anular</a>
+                                <a data-id="@item.Id" class="btn btn-success activar-dialog-window">Activar</a>
                             }
                         </td>
                     </tr>

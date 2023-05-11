@@ -7,37 +7,10 @@
             <div class="col col-sm-12">
                 <div class="form-group">
                     <div class="input text">
-                        @*crear un cuadro de texto donde se rellenaran los siguientes datos*@
-                        @*<div class="form-group"> ESTO ES PARA CUANDO ES UN BOMBO ANIDADO
-                        <label asp-for="I" class="control-label">Zona</label>
-                        <select asp-for="IdZona" class="form-control" asp-items="ViewBag.IdZona" id="comboZona" onchange="onchangeZonas()"></select>
-                        <span asp-validation-for="IdZona" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                        <label asp-for="IdCategoria" class="control-label"></label>
-                        <select asp-for="IdCategoria" class="form-control" id="comboCategoria"></select>
-                        <span asp-validation-for="IdCategoria" class="text-danger"></span>
-                        </div>*@
                         <div class="form-group">
                             <label asp-for="Nombre" class="control-label">Nuevo animal</label>
                             <input asp-for="Nombre" class="form-control" />
                             <span asp-validation-for="Nombre" class="text-danger"></span>
-                        </div>
-
-                        @*<div class="form-group col-md-6"> PARA EL METODO DE BUSCAR
-                        <input class="form-control input-sm" id="IdProveedores" asp-for="IdProveedor" />
-                        <label class="control-label">
-                        Proveedor
-                        <a onclick="onclickBuscarProveedor()" class="btn btn-sm btn-info text-white">Buscar</a>
-                        </label>
-                        <input required disabled class="form-control nom_prove" />
-                        <input type="hidden" asp-for="ProveedorDescripcion" id="emp_prove" name="ProveedorDescripcion" class="form-control nom_prove" />
-                        </div>*@
-
-                        <div class="form-group">
-                            <label asp-for="Estado" class="control-label">Estado</label>
-                            <input asp-for="Estado" class="form-control" />
-                            <span asp-validation-for="Estado" class="text-danger"></span>
                         </div>
                     </div>
                 </div>

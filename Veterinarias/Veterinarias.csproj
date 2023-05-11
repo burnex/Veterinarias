@@ -18,7 +18,6 @@
     <Folder Include="Views\Consultas\" />
     <Folder Include="Views\Baños\" />
     <Folder Include="Views\Razas\" />
-    <Folder Include="Views\Visitas\" />
     <Folder Include="Views\Veterinarios\" />
     <Folder Include="Views\Personas\" />
     <Folder Include="wwwroot\images\MascotasFoto\" />

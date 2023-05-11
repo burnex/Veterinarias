@@ -66,6 +66,9 @@ namespace Veterinarias.Controllers
             var Animales = await _context.Animales.ToListAsync();
             ViewData["IdAnimal"] = new SelectList(Animales, "Id", "Nombre");
 
+            var Razas = await _context.Razas.ToListAsync();
+            ViewData["IdRaza"] = new SelectList(Razas, "Id", "Nombre");
+
             var mascotas = new Mascotas { FechaNacimiento = DateTime.Now.Date };
             return PartialView(mascotas);
         }
@@ -112,7 +115,7 @@ namespace Veterinarias.Controllers
             return string.Format("/images/{0}/{1}", ruta, fileName);
         }
 
-        //Edit
+        //EDIT
         public async Task<IActionResult> Edit(int id)
         {
             var model = await _context.Mascotas.FindAsync(id);
@@ -164,21 +167,5 @@ namespace Veterinarias.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
