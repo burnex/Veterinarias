@@ -50,7 +50,7 @@ namespace Veterinarias.Modelos
                 }
                 else
                 {
-                    return $"https://localhost:7149/{Foto}";
+                    return $"http://localhost:7149/{Foto}";
                 }
             }
         }
